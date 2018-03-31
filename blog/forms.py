@@ -6,7 +6,7 @@ class PostForm(forms.ModelForm):
 
     class Meta:
         model = Post
-        fields = ('title', 'text','add_image_url','product_type','product_age', 'product_price')
+        fields = ('title', 'text','add_image_url','product_type','product_age', 'product_price','phone_no')
 
 class UserRegistrationForm(forms.Form):
     username = forms.CharField(
