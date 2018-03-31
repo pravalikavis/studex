@@ -1,35 +1,12 @@
-
 {% extends 'blog/base.html' %}
 
+{% block title %}Login{% endblock %}
+
 {% block content %}
-<div class="form-color">
-<div class="container pull-right">
-		
-	<div class="row main">
-			
-	<div class="panel-heading">
-	
-           
-   <div class="panel-title text-center">
-	 
-              		<center><h1 class="title" >Sign Up</h1>
-	</center>
-               		<hr />
-	        
-       	</div>
-	
-            </div> 
-			
-	<div class="main-login main-center ">
-
-
-			
-		<form class="form-horizontal" name="myForm" >
-			 <form method="POST" ><center><font color="black">
+    <form method="POST">
         {% csrf_token %} {{ form.as_p }}
-                 <button type="submit">Submit</button></center></font>
+        <button type="submit">Submit</button>
     </form>
 
-                 <a href="{% url 'login' %}">Already a member of STUDEX??</a></form>
-        </div></div></div></div>
-						{% endblock %}
+<a href="{% url 'login' %}">Already a member of OPINIONES??</a>
+{% endblock %}
