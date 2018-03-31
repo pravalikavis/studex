@@ -25,11 +25,11 @@
 
 			
 		<form class="form-horizontal" name="myForm" >
-			 <form method="POST" ><center>
+			 <form method="POST" ><center><font color="black">
         {% csrf_token %} {{ form.as_p }}
-        <button type="submit">Submit</button></center>
+                 <button type="submit">Submit</button></center></font>
     </form>
 
-            <a href="#">Already a member of STUDEX??</a></form>
-            </div>
+                 <a href="{% url 'login' %}">Already a member of STUDEX??</a></form>
+        </div></div></div></div>
 						{% endblock %}
