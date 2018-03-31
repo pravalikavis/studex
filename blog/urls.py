@@ -32,6 +32,7 @@ url(r'^comment/(?P<pk>\d+)/approve/$', views.comment_approve, name='comment_appr
 url(r'^comment/(?P<pk>\d+)/remove/$', views.comment_remove, name='comment_remove'),
 
 url(r'^logout/', views.logout_view, name='logout_view'),
+    url(r'^accounts/profile', views.cards, name='post_list'),
 url(r'^upload.html$', views.upload, name='upload'),
 url(r'^homepage.html$', views.homepage, name='homepage'),
 url(r'^aboutus.html$', views.aboutus, name='aboutus'),
