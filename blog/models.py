@@ -19,6 +19,8 @@ class Post(models.Model):
     product_type=models.CharField(max_length=100,default='stationary')
     product_age=models.IntegerField(default=0)
     product_price=models.IntegerField(default=0)
+    phone_no=models.IntegerField(validators=[MinValueValidator(7777777777),
+                                              MaxValueValidator(9999999999)], default=9999999999)
     def publish(self):
         self.published_date = timezone.now()
         self.save()
