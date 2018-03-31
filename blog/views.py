@@ -96,8 +96,22 @@ def signup(request):
     return render(request, 'blog/signup.html', {})
 
 def upload(request):
-    return render(request, 'blog/upload.html', {})
+    query = request.GET.get("q")
 
+    if query:
+        post = Post.objects.filter(title__icontains=query)
+        return render(request, 'blog/post_list.html', {'post': post, })
+    if request.method == "POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = PostForm()
+    return render(request, 'blog/upload.html', {'form': form})
 
 def aboutus(request):
     return render(request, 'blog/aboutus.html', {})
