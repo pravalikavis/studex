@@ -1,0 +1,36 @@
+
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div >
+            
+            {% if user.is_authenticated %}
+             <h1 >Hi {{ user.username }}!</h1>
+            {% endif %}
+           
+        
+
+
+<div >
+<div class="card-deck pad">
+{% for post in post %}
+   
+    
+
+  <div class="card">
+    <img class="card-img-top" src="{{ post.add_image_url }}" alt="Card image cap"  >
+    <div class="card-body">
+        <h5 class="card-title"><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }} </a>  </h5>
+      <p class="card-text co" >{{ post.text }} </p>
+        
+      <p class="card-text"><small class="text-muted">Comments: {{ post.comments.count }}<br>{{ post.published_date }}</small></p>
+        
+    </div>
+  </div>
+
+    {% if forloop.counter|divisibleby:2 %}</div><br><div class="card-deck pad">{% endif %}
+   
+{% endfor %}
+</div>
+
+{% endblock %}

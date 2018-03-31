@@ -1,0 +1,65 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+    <div class="posts">
+        
+        {% if post.published_date %}
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+        {% endif %}
+    <p>    <h1>{{ post.title }} </h1>
+        
+            <img style="float:right;" src="{{ post.add_image_url }}"  >{{ post.text }} 
+        
+        <h5>Average-Rating:</h5>{{ comment.rating__avg }} </p>
+        
+        
+      
+            
+       
+    </div>
+<br>
+<br>
+<br>
+   <h2>COMMENTS:</h2>    
+
+{% for comment in post.comments.all %}
+    {% if user.is_authenticated or comment.approved_comment %}
+    <div class="comment">
+        <div class="date">
+             <strong>{{ comment.author }} </strong>
+            {{ comment.created_date }}
+            {% if not comment.approved_comment %}
+                <a class="btn btn-default" href="{% url 'comment_remove' pk=comment.pk %}"><span class="glyphicon glyphicon-remove"></span>REMOVE</a>
+                <a class="btn btn-default" href="{% url 'comment_approve' pk=comment.pk %}"><span class="glyphicon glyphicon-ok"></span>APPROVE</a>
+            {% endif %}
+            
+        </div>
+       
+             {{ comment.text|linebreaks }}
+        <p>rating:{{ comment.rating }}</p>
+    </div>
+    {% endif %}
+{% empty %}
+
+
+    <p>No comments here yet :(</p>
+{% endfor %}
+
+
+            {% if user.is_authenticated %}
+<a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">
+    {% else %}
+    
+    <a class="btn btn-default" href="#">
+        {% endif %}Add comment</a>
+ <center>
+            
+            
+            
+        
+        
+                </center>
+{% endblock %}
