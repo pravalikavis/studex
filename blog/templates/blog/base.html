@@ -164,7 +164,13 @@ img{
   }
 }
 body{
-background-color:black;
+
+background: #000000;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+
 }
 
        .navbar {
@@ -222,7 +228,7 @@ background-color:black;
     </head>
     <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="cards.html">STUDEX</a>
+  <a class="navbar-brand" href="{% url 'cards' %}">STUDEX</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -262,16 +268,19 @@ background-color:black;
         <a class="nav-link" href="{% url 'aboutus' %}">ABOUTUS <span class="sr-only">(current)</span></a>
       </li>
     </ul>
+
+       {% if user.is_authenticated %}
       <a class="nav-link"href="{% url 'logout_view' %}">LOGOUT</a>
-       
+    {% endif %}
       
     <form class="form-inline my-2 my-lg-0"  method="GET" action=''>
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="q">
       <button class="btn btn-outline-success my-2 my-sm-1" type="submit" >Search</button>
 
        </form>
+  {% if not user.is_authenticated %}
       <button class="btn btn-outline-primary " type="submit" > <a class="nav-link"href={% url 'login' %}>login</a></button>
-      <button class="btn btn-outline-primary " type="submit" > <a class="nav-link"href={% url 'signup' %}>signup</a></button>
+      <button class="btn btn-outline-primary " type="submit" > <a class="nav-link"href={% url 'signup' %}>signup</a></button>{% endif %}
       </div> </div>
 </nav><div class="pad">
         
